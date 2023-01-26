@@ -8,6 +8,8 @@ import Contact from './pages/help/contact';
 import NotFount from './pages/notfound';
 import Careers, { careersLoader } from './pages/careers/careers';
 import CareersLayout from './layouts/careerlayouts';
+import CareerDetailes, { careerDetailesLoader } from './pages/careers/careerdetailes';
+import CareerError from './pages/careers/careererror';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,11 +22,13 @@ const router = createBrowserRouter(
         <Route path='contact' element={<Contact />} />
       </Route>
 
-      <Route path='careers' element={<CareersLayout />}>
+      <Route path='careers' element={<CareersLayout />} errorElement={<CareerError />}>
         <Route
           index
           element={<Careers />}
           loader={careersLoader}
+        />
+        <Route path=':id' element={<CareerDetailes />} loader={careerDetailesLoader}
         />
       </Route>
 
